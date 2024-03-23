@@ -1,11 +1,6 @@
-import { useRef } from "react";
-import { CartT, ProductsT } from "../../redux/type";
+import { CartT } from "../../redux/type";
 import { useDispatch } from "react-redux";
-import { showProduct } from "../../redux/slices/showProductSlice";
-import {
-  addProductToCart,
-  deleteProductFromCart,
-} from "../../redux/slices/categoresSlice";
+import { deleteProductFromCart } from "../../redux/slices/categoresSlice";
 
 type Props = {
   product: CartT;

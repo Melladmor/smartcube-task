@@ -1,4 +1,3 @@
-import { useRef, useState } from "react";
 import { ProductsT } from "../../redux/type";
 import { useDispatch } from "react-redux";
 import { showProduct } from "../../redux/slices/showProductSlice";

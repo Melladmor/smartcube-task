@@ -1,4 +1,3 @@
-import React from "react";
 import { Carousel as ResponsiveCarousel } from "react-responsive-carousel";
 import PrevAndNextArrow from "../Buttons/PrevAndNextArrow";
 import { ImageT } from "../../redux/type";

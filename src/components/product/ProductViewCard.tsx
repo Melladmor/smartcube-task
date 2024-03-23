@@ -1,4 +1,3 @@
-import Carousel from "./Carousel";
 import { CategoryI, ProductsT } from "../../redux/type";
 import { useDispatch, useSelector } from "react-redux";
 import {
