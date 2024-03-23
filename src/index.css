@@ -1,0 +1,61 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+* {
+  scroll-behavior: smooth;
+  padding: 0;
+  margin: 0;
+}
+
+::-webkit-scrollbar {
+  height: 6px;
+  width: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+@media (max-width: 640px) {
+  ::-webkit-scrollbar {
+    display: none;
+  }
+}
+.carousel,
+.carousel-slider {
+  position: relative;
+  height: 233px;
+  margin-bottom: 19px !important;
+}
+.control-dots {
+  position: absolute;
+  bottom: -12px !important;
+}
+.dot {
+  width: 12px !important;
+  height: 6px !important;
+  border-radius: 3px !important;
+  box-shadow: none !important;
+  background-color: #f3f3f3 !important;
+}
+.dot.selected {
+  background-color: #410deb !important;
+}
+
+.box {
+  --mask: radial-gradient(
+        13.99px at 50% calc(100% - 19.2px),
+        #000 99%,
+        #0000 101%
+      )
+      calc(50% - 24px) 0/48px 100%,
+    radial-gradient(13.99px at 50% calc(100% + 7.2px), #0000 99%, #000 101%) 50%
+      calc(100% - 12px) / 48px 100% repeat-x;
+  -webkit-mask: var(--mask);
+  mask: var(--mask);
+}
