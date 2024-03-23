@@ -48,6 +48,31 @@ const categoriesDummyData: CategoryI[] = [
     title: "Plate",
     products: generateProducts(5, 6),
   },
+  {
+    id: 6,
+    title: "Plate On Oven",
+    products: generateProducts(6, 8),
+  },
+  {
+    id: 7,
+    title: "Pizaa",
+    products: generateProducts(6, 8),
+  },
+  {
+    id: 8,
+    title: "Grilled",
+    products: generateProducts(4, 8),
+  },
+  {
+    id: 9,
+    title: "SeaFood",
+    products: generateProducts(4, 8),
+  },
+  {
+    id: 10,
+    title: "Manakish",
+    products: generateProducts(4, 8),
+  },
 ];
 
 type initialStateT = {

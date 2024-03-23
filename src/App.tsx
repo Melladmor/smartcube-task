@@ -15,7 +15,7 @@ function App() {
   return (
     <div className="bg-backgrounds-main">
       <Header title="Select your meals" />
-      <main className="min-h-[100vh] lg:mx-[112px] grid lg:grid-cols-12 md:grid-cols-1 sm:grid-cols-1 xs:grid-cols-1 gap-[43px]">
+      <main className="min-h-[80vh] lg:mx-[112px] grid lg:grid-cols-12 md:grid-cols-1 sm:grid-cols-1 xs:grid-cols-1 gap-[43px]">
         <div className="lg:col-span-8 md:col-span-1 sm:col-span-1 xs:col-span-1">
           <CategoriesLayout />
         </div>

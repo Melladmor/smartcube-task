@@ -30,8 +30,6 @@ const ProductViewCard = (props: Props) => {
     (product: ProductsT) => product?.id == product_id
   );
 
-  console.log({ isSmallScreen });
-
   return (
     <>
       {isSmallScreen ? (

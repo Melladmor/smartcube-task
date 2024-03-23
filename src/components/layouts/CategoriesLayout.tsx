@@ -12,13 +12,16 @@ import {
 } from "../../redux/slices/showProductSlice";
 import ProductViewCard from "../product/ProductViewCard";
 import { useRef } from "react";
-import {
-  selectCurrentTab,
-} from "../../redux/slices/scrollTabsSlice";
-
+import { selectCurrentTab } from "../../redux/slices/scrollTabsSlice";
+import Slider from "react-slick";
+export interface SliderRefType {
+  slickNext(): void;
+  slickPrev(): void;
+  slickGoTo(value: number): void;
+}
 const CategoriesLayout = () => {
+  let sliderRef = useRef<Slider | null>(null);
   const categoriesRef = useRef<HTMLDivElement>(null);
-  const tabsRef = useRef<HTMLDivElement>(null);
   const activeTab = useSelector(selectCurrentTab);
   const categories = useSelector(selectCategories).categoreis;
   const product = useSelector(selectShowProductSlice).product;
@@ -43,8 +46,6 @@ const CategoriesLayout = () => {
       );
   };
 
-
-
   return (
     <div className="border border-border-main lg:rounded-[12px] bg-white relative lg:h-[863px] md:h-[863px] sm:h-[100vh] xs:h-[100vh]">
       {!!showProductSliceValue && (
@@ -57,19 +58,17 @@ const CategoriesLayout = () => {
           open={showProductSliceValue}
         />
       )}
-      <div className="mb-[61px] border-b border-border-main">
+      <div className="lg:mb-[61px] md:mb-[51px] sm:mb-[41px] xs:mb-[31px] border-b border-border-main">
         <Tabs
           tabs={tabs}
           activeTab={activeTab?.currentTab}
-          tabsRef={tabsRef}
           categoriesRef={categoriesRef}
+          sliderRef={sliderRef}
         />
       </div>
       <div
-        className="lg:px-[42px] md:px-[42px] sm:px-[32px] xs:px-[23px] lg:max-h-[600px] md:max-h-[600px] sm:max-h-[80vh] xs:max-h-[80vh] overflow-y-scroll "
-        ref={categoriesRef}
-        // onScroll={handleCategoryScroll}
-        >
+        className="lg:px-[42px] md:px-[42px] sm:px-[32px] xs:px-[23px] lg:max-h-[600px] md:max-h-[600px] sm:max-h-[80vh] xs:max-h-[80vh] overflow-y-scroll snap-y snap-mandatory "
+        ref={categoriesRef}>
         {categories?.map((cat: CategoryI) => {
           return (
             <Category
@@ -79,7 +78,7 @@ const CategoriesLayout = () => {
               title={cat?.title}
               products={cat?.products}
               cat_id={cat?.id}
-              tabsRef={tabsRef}
+              sliderRef={sliderRef}
             />
           );
         })}

@@ -1,8 +1,9 @@
-import { RefObject, useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import { ProductsT } from "../../redux/type";
 import Product from "../product/Product";
 import { useDispatch } from "react-redux";
 import { setCurrentTab } from "../../redux/slices/scrollTabsSlice";
+import Slider from "react-slick";
 
 type Props = {
   id: number;
@@ -10,13 +11,12 @@ type Props = {
   products: ProductsT[];
   length: number;
   cat_id: number;
-  tabsRef: RefObject<HTMLDivElement>;
+  sliderRef: Slider | any;
 };
 
 const Category = (props: Props) => {
-  const { id, products, title, length, cat_id, tabsRef } = props;
+  const { id, products, title, length, cat_id, sliderRef } = props;
   const categoryRef = useRef<HTMLDivElement>(null);
-  const titleRef = useRef<HTMLDivElement>(null);
   const dispatch = useDispatch();
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -25,36 +25,16 @@ const Category = (props: Props) => {
           if (categoryRef.current) {
             const parentNode = categoryRef.current?.parentNode as HTMLElement;
 
-            // Find the index of the category element within its parent node's children
             const categoryIndex = Array.from(parentNode.children).indexOf(
               categoryRef.current
             );
-            dispatch(setCurrentTab(categoryIndex));
-            const childTab = tabsRef.current?.children[
-              categoryIndex
-            ] as HTMLElement;
 
-            if (childTab && tabsRef.current) {
-              const containerWidth = tabsRef.current.clientWidth;
-              const tabOffsetLeft = childTab.offsetLeft;
-              const tabWidth = childTab.clientWidth;
-
-              const tabEndOffset = tabOffsetLeft + tabWidth;
-
-              setTimeout(() => {
-                if (
-                  tabsRef.current &&
-                  tabOffsetLeft <= tabsRef.current.scrollLeft
-                ) {
-                  tabsRef.current.scrollLeft = tabEndOffset - containerWidth;
-                } else if (
-                  tabsRef.current &&
-                  tabEndOffset >= tabsRef.current.scrollLeft + containerWidth
-                ) {
-                  tabsRef.current.scrollLeft = tabOffsetLeft;
-                }
-              }, 100);
-            }
+            setTimeout(() => {
+              dispatch(setCurrentTab(categoryIndex));
+            }, 1000);
+            setTimeout(() => {
+              sliderRef.current.slickGoTo(categoryIndex);
+            }, 1200);
           }
         }
       },
@@ -74,7 +54,7 @@ const Category = (props: Props) => {
   return (
     <div id={String(id)} ref={categoryRef} className="mb-[53px]">
       <div className="flex justify-between items-center mb-[14px]">
-        <div className="flex items-center gap-[12px]" ref={titleRef}>
+        <div className="flex items-center gap-[12px]">
           <h3 className="lg:text-[20px] md:text-[18px]  sm:text-[16px] xs:text-[14px] font-bold ">
             {title}
           </h3>
