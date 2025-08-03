@@ -20,6 +20,8 @@ To use the project, follow these instructions:
     ```sh
     yarn dev
     ```
+### Demo 
+<a href="https://smartcube-task.netlify.app/" target="_blank">Demo</a>
 
 ##### Author
 
